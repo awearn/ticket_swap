@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+
+<% if @ticket.errors.any? %>
+  <% @ticket.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Ticket</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_ticket" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for notes -->
+          <div class="form-group">
+            <label for="notes" class="col-sm-2 control-label">
+              Notes
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="<%= @ticket.notes %>">
+            </div>
+          </div>
+
+          <!-- Label and input for price -->
+          <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">
+              Price
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @ticket.price %>">
+            </div>
+          </div>
+
+          <!-- Label and input for for_sale_wanted -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="for_sale_wanted">
+                  <input type="checkbox" id="for_sale_wanted" name="for_sale_wanted" value="1" <%= "checked" if @ticket.for_sale_wanted %>>
+                  For sale wanted
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label and input for event_id -->
+          <div class="form-group">
+            <label for="event_id" class="col-sm-2 control-label">
+              Event
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:event_id, options_from_collection_for_select(Event.all, :id, :name, @ticket.event_id), :class => "form-control") %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Ticket
+              </button>
+              or
+              <a href="/tickets">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

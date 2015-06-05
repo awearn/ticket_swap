@@ -1,0 +1,110 @@
+<!-- Validation failure messages -->
+
+<% if @event.errors.any? %>
+  <% @event.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Event</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_event" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for name -->
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @event.name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for address -->
+          <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">
+              Address
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @event.address %>">
+            </div>
+          </div>
+
+          <!-- Label and input for date -->
+          <div class="form-group">
+            <label for="date" class="col-sm-2 control-label">
+              Date
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @event.date %>">
+            </div>
+          </div>
+
+          <!-- Label and input for tickets_for_sale -->
+          <div class="form-group">
+            <label for="tickets_for_sale" class="col-sm-2 control-label">
+              Tickets for sale
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="tickets_for_sale" name="tickets_for_sale" placeholder="Tickets for sale" class="form-control" value="<%= @event.tickets_for_sale %>">
+            </div>
+          </div>
+
+          <!-- Label and input for average_price -->
+          <div class="form-group">
+            <label for="average_price" class="col-sm-2 control-label">
+              Average price
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="average_price" name="average_price" placeholder="Average price" class="form-control" value="<%= @event.average_price %>">
+            </div>
+          </div>
+
+          <!-- Label and input for tickets_wanted -->
+          <div class="form-group">
+            <label for="tickets_wanted" class="col-sm-2 control-label">
+              Tickets wanted
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="tickets_wanted" name="tickets_wanted" placeholder="Tickets wanted" class="form-control" value="<%= @event.tickets_wanted %>">
+            </div>
+          </div>
+
+          <!-- Label and input for type_id -->
+          <div class="form-group">
+            <label for="type_id" class="col-sm-2 control-label">
+              Type
+            </label>
+            <div class="col-sm-10">
+              <%= select_tag(:type_id, options_from_collection_for_select(Type.all, :id, :name, @event.type_id), :class => "form-control") %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Event
+              </button>
+              or
+              <a href="/events">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
