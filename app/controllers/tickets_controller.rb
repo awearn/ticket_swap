@@ -17,6 +17,7 @@ class TicketsController < ApplicationController
     @ticket.price = params[:price]
     @ticket.for_sale_wanted = params[:for_sale_wanted]
     @ticket.event_id = params[:event_id]
+    @ticket.user_id = current_user.id
 
     if @ticket.save
       redirect_to "/tickets", :notice => "Ticket created successfully."

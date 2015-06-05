@@ -36,6 +36,9 @@
           <dt>Notes</dt>
           <dd><%= ticket.notes %></dd>
 
+          <dt>Owner</dt>
+          <dd><%= ticket.user_id %></dd>
+
         </dl>
         <div class="btn-group btn-group-justified">
           <a href="/tickets/<%= ticket.id %>" class="btn btn-primary">

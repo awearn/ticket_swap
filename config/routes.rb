@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  root 'tickets#index'
   # Routes for the Type resource:
   # CREATE
   get "/types/new", :controller => "types", :action => "new"
