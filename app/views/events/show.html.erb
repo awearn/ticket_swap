@@ -4,13 +4,13 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Event #<%= @event.id %></h3>
+        <h3 class="panel-title"><%= @event.name %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
-              <dt>Name</dt>
+              <dt>Event</dt>
               <dd><%= @event.name %></dd>
 
               <dt>Address</dt>
@@ -19,17 +19,17 @@
               <dt>Date</dt>
               <dd><%= @event.date %></dd>
 
-              <dt>Tickets for sale</dt>
+              <dt># of Tickets for sale</dt>
               <dd><%= @event.tickets_for_sale %></dd>
 
               <dt>Average price</dt>
               <dd><%= @event.average_price %></dd>
 
-              <dt>Tickets wanted</dt>
+              <dt># of Tickets wanted</dt>
               <dd><%= @event.tickets_wanted %></dd>
 
               <dt>Type</dt>
-              <dd><%= @event.type_id %></dd>
+              <dd><%= @event.type.name %></dd>
 
             </dl>
             <div class="btn-group btn-group-justified">
