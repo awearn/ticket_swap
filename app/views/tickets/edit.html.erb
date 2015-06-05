@@ -15,20 +15,20 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Edit Ticket #<%= @ticket.id %></h3>
+        <h3 class="panel-title">Edit Your <%= @ticket.event.name %> Ticket</h3>
       </div>
       <div class="panel-body">
         <form action="/update_ticket/<%= @ticket.id %>" method="post" class="form-horizontal">
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-          <!-- Label and input for notes -->
+          <!-- Label and input for event_id -->
           <div class="form-group">
-            <label for="notes" class="col-sm-2 control-label">
-              Notes
+            <label for="event_id" class="col-sm-2 control-label">
+              Event
             </label>
             <div class="col-sm-10">
-              <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="<%= @ticket.notes %>">
+              <%= select_tag(:event_id, options_from_collection_for_select(Event.all, :id, :name, @ticket.event_id), :class => "form-control") %>
             </div>
           </div>
 
@@ -54,13 +54,13 @@
             </div>
           </div>
 
-          <!-- Label and input for event_id -->
+          <!-- Label and input for notes -->
           <div class="form-group">
-            <label for="event_id" class="col-sm-2 control-label">
-              Event
+            <label for="notes" class="col-sm-2 control-label">
+              Notes
             </label>
             <div class="col-sm-10">
-              <%= select_tag(:event_id, options_from_collection_for_select(Event.all, :id, :name, @ticket.event_id), :class => "form-control") %>
+              <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="<%= @ticket.notes %>">
             </div>
           </div>
 
