@@ -34,16 +34,24 @@
           <dd><%= event.date %></dd>
 
           <dt># of Tickets for sale</dt>
-          <dd><%= event.tickets_for_sale %></dd>
-
           <% users = event.tickets.where({:for_sale_wanted => true}) %>
-            <dd><%= users.count %></dd>
+          <dd><%= users.count %></dd>
 
           <dt>Average price</dt>
-          <dd><%= event.average_price %></dd>
+          <% total = 0 %>
+          <% ticketlist = event.tickets.where({:for_sale_wanted => true}) %>
+          <% ticketlist.each do |ticket|%>
+            <% total += ticket.price%>
+          <% end %>
+          <% if ticketlist.count > 0%>
+            <dd><%= total/ticketlist.count %></dd>
+          <% else %>
+            <dd>N/A</dd>
+          <% end %>
 
           <dt># of Tickets wanted</dt>
-          <dd><%= event.tickets_wanted %></dd>
+          <% users = event.tickets.where({:for_sale_wanted => false}) %>
+          <dd><%= users.count %></dd>
 
           <dt>Type</dt>
           <dd><%= event.type.name %></dd>
