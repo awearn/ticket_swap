@@ -49,6 +49,7 @@
             </label>
             <div class="col-sm-10">
               <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @event.date %>">
+              <%= calendar_date_select_tag "name", "2007-01-01", :embedded => true %>
             </div>
           </div>
 
