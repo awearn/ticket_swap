@@ -36,6 +36,9 @@
           <dt># of Tickets for sale</dt>
           <dd><%= event.tickets_for_sale %></dd>
 
+          <% users = event.tickets.where({:for_sale_wanted => true}) %>
+            <dd><%= users.count %></dd>
+
           <dt>Average price</dt>
           <dd><%= event.average_price %></dd>
 

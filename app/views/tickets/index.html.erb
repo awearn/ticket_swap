@@ -30,14 +30,18 @@
           <dt>Price</dt>
           <dd>$<%= ticket.price %></dd>
 
-          <dt>For sale wanted</dt>
-          <dd><%= ticket.for_sale_wanted %></dd>
+          <dt>For sale/Wanted</dt>
+          <% if  ticket.for_sale_wanted %>
+            <dd>For Sale</dd>
+          <% else %>
+            <dd>Wanted</dd>
+          <% end %>
 
           <dt>Notes</dt>
           <dd><%= ticket.notes %></dd>
 
           <dt>Owner</dt>
-          <dd><%= ticket.user_id %></dd>
+          <dd><%= ticket.user.email %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">

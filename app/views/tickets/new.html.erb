@@ -47,8 +47,10 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div class="checkbox">
                 <label for="for_sale_wanted">
-                  <input type="checkbox" id="for_sale_wanted" name="for_sale_wanted" value="1" <%= "checked" if @ticket.for_sale_wanted %>>
-                  For sale wanted
+                  <input id="for_sale_wanted" name="for_sale_wanted" type="radio" value="1" />
+                  <label for="for_sale_wanted">For Sale</label>
+                  <input id="for_sale_watned" name="for_sale_wanted" type="radio" value="0" />
+                  <label for="for_sale_wanted">Wanted</label>
                 </label>
               </div>
             </div>
